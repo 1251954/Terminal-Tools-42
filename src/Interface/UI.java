@@ -1,7 +1,7 @@
 package Interface;
 
 import Utils.Utils;
-import Utils.Utils.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,9 +12,9 @@ public class UI implements Runnable {
 
     public void run() {
         printHeader();
-        List<MenuItem> options = new ArrayList<MenuItem>();
-
-        int option = 0;
+        buildMenu();
+        List<MenuItem> options = buildMenu();
+        int option;
         do {
             option = Utils.showAndSelectIndex(options, "\n\n--- MAIN MENU --------------------------");
 
@@ -22,6 +22,14 @@ public class UI implements Runnable {
                 options.get(option).run();
             }
         } while (option != -1);
+
+    }
+
+    public List<MenuItem> buildMenu(){
+        List<MenuItem> options = new ArrayList<>();
+        options.add(new MenuItem("lol", () -> System.out.print("lol\n")));
+        options.add(new MenuItem("Test", new teestUI()));
+        return options;
     }
 
     public void printHeader(){

@@ -1,16 +1,13 @@
 import Interface.UI;
 
-public class Main {
+void main() {
+    Bootstrap bootstrap = new Bootstrap();
+    bootstrap.run();
 
-    public static void main(String[] args) {
-        Bootstrap bootstrap = new Bootstrap();
-        bootstrap.run();
-
-        try {
-            UI console = new UI();
-            console.run();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    try {
+        UI console = new UI();
+        console.run();
+    } catch (Exception e) {
+        e.printStackTrace();
     }
 }

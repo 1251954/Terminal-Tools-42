@@ -111,11 +111,35 @@ public class Utils {
         return value - 1;
     }
 
+    public static String truncate(String string, int max) {
+
+        if (string == null) return ""; // null prevention.
+
+        return string.length() <= max ? string : string.substring(0, max - 1) + "...";
+    }
+
     //sort of a debugging tool, shows the elapsed time of a runnable.
-    public static void timeFunction(Runnable task) {
+    public static long timeFunction(Runnable task) {
+        int timeReference = 1000000; // in this case to convert nano to ms.
         long start = System.nanoTime();
         task.run();
-        long elapsedMs = (System.nanoTime() - start) / 1000000;
-        System.out.printf("Elapsed time: %d ms%n%n", elapsedMs);
+        return (System.nanoTime() - start) / timeReference;
+    }
+
+    public static void classify (long elapsedTime, boolean isComplex){
+
+        String reset= "\u001B[0m";
+        String green = "\u001B[32m";
+        String red = "\u001B[31m";
+        String yellow = "\u001B[33m";
+
+        if(!isComplex){
+            if(elapsedTime < 50){
+                System.out.printf("Elapsed Time: %d. %sTest %s",elapsedTime,green,reset);
+            }
+        }
+        else{
+            System.out.printf("Elapsed Time: %d. Test%s",elapsedTime,red);
+        }
     }
 }
